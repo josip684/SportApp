@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 #{title}
+    br
+    h1 Dodani mečevi
+    br
+    ul.list-group
+        each match, i in matches
+            li.list-group-item
+                a(href="/matches/"+match._id)="["+match.date_of_play+" "+match.playing_time+"h"+"]"+" "+" "+match.host_id + " - " + match.guest_id+" " +" ("+match.host_goals+" - "+match.guest_goals+") "+match.duration +" ["+match.sport_id+" -> "+match.league_id+"]"
+    

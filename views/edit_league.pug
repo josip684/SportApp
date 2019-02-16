@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(method='POST', action='/leagues/edit/'+league._id)
+        br
+        h1 #{title}
+        br
+        #form-group
+            label Id lige:
+            input.form-control(name='id', type='text', value=league.id)
+        #form-group
+            label Autor lige:
+            input.form-control(name='author', type='text', value=league.author)
+        #form-group
+            label Ime lige:
+            input.form-control(name='name', value= league.name)
+        #form-group
+            label Sport:
+            input.form-control(name='sport_id', value= league.sport_id)
+        br
+        input.btn.btn-primary(type='submit', value='Submit')

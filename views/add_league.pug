@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1 #{title}
+    - var n = 0;
+    - var maxi = 0;
+    
+    each league, i in leagues
+        if league.id > maxi, maxi=league.id, n++
+    br
+    form(method='POST', action='/leagues/add')
+        br
+        h1 Dodaj ligu
+        br
+        #form-group
+            label ID lige:
+            input.form-control(name='id', type='text', value= maxi+1)
+        #form-group
+            label Ime Lige:
+            input.form-control(name='name', type='text')
+        
+        label Odaberi sport kojem liga pripada:
+        br
+        select(name="sport_id" id="chooseSportInLeague" )
+            each sports in sport
+                option(value=sports.name) #{sports.name}
+                console.log(option(value))
+        br
+        br
+        input.btn.btn-primary(type='submit', value='Submit')
+
+    

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1=league.title
+    h5 written by #{author}
+    p= league.body
+    hr
+    if user
+        br
+        label Odaberite opciju koju želite u vezi lige:
+        br
+        //-if user.id ==league.author
+        a.btn.btn-default(href='/leagues/edit/'+league._id) Edit
+        a.btn.btn-danger.delete-league(href='#', data-id=league._id) Delete
+        
+        

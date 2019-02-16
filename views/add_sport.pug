@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1 #{title}
+    - var n = 0;
+    - var maxi = 0;
+    each sports, i in sport
+        if sports.id > maxi, maxi=sports.id, n++
+    br
+    form(method='POST', action='/sports/add')
+        br
+        h1 Dodaj sport
+        br
+        #form-group
+            label ID sporta:
+            input.form-control(name='id', type='text' value=maxi+1)
+        #form-group
+            label Ime sporta:
+            input.form-control(name='name', type='text')
+        br
+        input.btn.btn-primary(type='submit', value='Submit')
+    
+    
+
+
+        
+                
+
+    
+
+        
+        

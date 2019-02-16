@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1=sport.title
+    br
+    h5 written by #{author}
+    p= sport.body
+    if user
+        br
+        label Odaberite opciju koju želite u vezi sporta:
+        br
+        //-if user.id ==sport.author
+        a.btn.btn-default(href='/sports/edit/'+sport._id) Edit
+        a.btn.btn-danger.delete-sport(href='#', data-id=sport._id) Delete

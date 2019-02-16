@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 #{title}
+    - var n = 0;
+    - var maxi = 0;
+    br
+    h1 Dodane lige
+    br
+
+    ul.list-group
+        each league, i in leagues
+            if league.id > maxi, maxi=league.id
+                li.list-group-item
+                    a(href="/leagues/"+league._id)=league.name+" ("+league.sport_id+")", n++

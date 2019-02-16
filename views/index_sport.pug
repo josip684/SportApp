@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 #{title}
+    br
+    h1 Dodani sportovi
+    br
+    ul.list-group
+        each sports, i in sport
+            li.list-group-item
+                a(href="/sports/"+sports._id)=sports.name
+    

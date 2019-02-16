@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1=club.title
+    h5 written by #{author}
+    p= club.body
+    hr
+    if user
+        br
+        label Odaberite opciju koju želite u vezi kluba:
+        br
+        //-if user.id ==club.author
+        a.btn.btn-default(href='/clubs/edit/'+club._id) Edit
+        a.btn.btn-danger.delete-club(href='#', data-id=club._id) Delete

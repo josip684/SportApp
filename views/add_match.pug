@@ -1,0 +1,68 @@
+extends layout
+
+block content
+    h1 #{title}
+    - var n = 0;
+    - var maxi = 0;
+    - var typeOfDuration= ["Igra se", "Nije počelo", "Kraj", "Prekinuto"]
+    each match, i in matches
+        if match.id > maxi, maxi=match.id, n++
+    br
+    form(method='POST', action='/matches/add')
+        br
+        h1 Dodaj utakmicu
+        br
+        #form-group
+            label ID utakmice:
+            input.form-control(name='id', type='text', value=maxi+1)
+        br
+        label Odaberi sport kojem utakmica pripada:
+        br
+        select(name="sport_id" id="chooseSportInLeague")
+            each sports in sport
+                option(value=sports.name) #{sports.name}
+                console.log(option(value))
+        br
+        label Odaberi ligu kojoj utakmica pripada:
+        br
+        select(name="league_id" id="chooseSportInLeague")
+            each league in leagues
+                option(value=league.name) #{league.sport_id+" -> "+league.name}
+                console.log(option(value))
+        br
+        label Odaberi domaćina:
+        br
+        select(name="host_id" id="chooseSportInLeague")
+            each club in clubs
+                option(value=club.name) #{club.sport_id+" -> "+club.league_id+" -> "+club.name}
+                console.log(option(value))
+        br
+        label Odaberi gosta:
+        br
+        select(name="guest_id" id="chooseSportInLeague")
+            each club in clubs
+                option(value=club.name) #{club.sport_id+" -> "+club.league_id+" -> "+club.name}
+                console.log(option(value))
+        br
+        #form-group
+            label Datum igranja:
+            input.form-control(name='date_of_play', type='date')
+        #form-group
+            label Vrijeme igranja:
+            input.form-control(name='playing_time', type='time')
+        #form-group
+            label Golovi domaćina:
+            input.form-control(name='host_goals', type='number' step=1)
+        #form-group
+            label Golovi gosta:
+            input.form-control(name='guest_goals', type='number' step=1)
+        label Status utakmice:
+        br
+        select(name="duration" id="chooseSportInLeague")
+            each d in typeOfDuration
+                option(value=d) #{d}
+                console.log(option(value))
+        br
+        br
+        input.btn.btn-primary(type='submit', value='Submit')
+    

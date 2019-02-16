@@ -1,0 +1,43 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(method='POST', action='/matches/edit/'+match._id)
+        br
+        h1 #{title}
+        br
+        #form-group
+            label Id meča:
+            input.form-control(name='id', type='number', value=match.id) 
+        #form-group
+            label Autor meča:
+            input.form-control(name='author', type='text', value=match.author) 
+        #form-group
+            label Sport:
+            input.form-control(name='sport_id', type='text', value=match.sport_id) 
+        #form-group
+            label Liga:
+            input.form-control(name='league_id', type='text', value=match.league_id)
+        #form-group
+            label Domaćin:
+            input.form-control(name='host_id', type='text', value= match.host_id ) 
+        #form-group
+            label Gost:
+            input.form-control(name='guest_id', type='text', value= match.guest_id)
+        #form-group
+            label Datum igranja:
+            input.form-control(name='date_of_play', type='date', value= match.date_of_play) 
+        #form-group
+            label Vrijeme igranja:
+            input.form-control(name='playing_time', type='time', value= match.playing_time)
+        #form-group
+            label Golovi domaćina:
+            input.form-control(name='host_goals', type='number', step=1, value= match.host_goals)
+        #form-group
+            label Golovi gosta:
+            input.form-control(name='guest_goals', type='number', step=1, value= match.guest_goals)
+        #form-group
+            label Status meča:
+            input.form-control(name='duration', type='text', value= match.duration) 
+        br
+        input.btn.btn-primary(type='submit', value='Submit')

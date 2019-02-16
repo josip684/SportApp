@@ -1,0 +1,40 @@
+extends layout
+
+block content
+    h1 #{title}
+    - var n = 0;
+    - var maxi = 0;
+    
+    each club, i in clubs
+        if club.id > maxi, maxi=club.id, n++
+    br
+    form(method='POST', action='/clubs/add')
+        br
+        h1 Dodaj klub
+        br
+        #form-group
+            label ID kluba:
+            input.form-control(name='id', type='text', value=maxi+1)
+        br
+        #form-group
+            label Ime kluba:
+            input.form-control(name='name', type='text')
+        br
+        label Odaberi sport kojem klub pripada:
+        br
+        select(name="sport_id" id="chooseSportInClub" onchange="getSelectValue();")
+            each sports in sport
+                option(value=sports.name, selected = "", odabraniSport= value) #{sports.name}
+                console.log(option(value))
+                
+        br
+        br
+        label Odaberi ligu kojoj klub pripada:
+        br
+        select(name="league_id" id="chooseLeagueInCLub")
+            each league in leagues
+                option(value=league.name) #{league.sport_id+" -> "+league.name}
+                console.log(option(value))
+        br
+        br
+        input.btn.btn-primary(type='submit', value='Submit')

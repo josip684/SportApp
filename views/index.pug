@@ -1,0 +1,62 @@
+extends layout
+mixin comment(commentData)
+    li.comment
+        .league= commentData.league
+        .date= commentData.date
+        .time= commentData.time
+        .host= commentData.host
+        .host_goal= commentData.host_goal
+        .guest_goal= commentData.guest_goal
+        .guest= commentData.guest
+        .postedByAdmin= commentData.postedByAdmin
+        
+block content
+    h1 #{title}
+                    
+    style.
+            .comment{
+                font-family: sans-serif;
+                line-height: 1.5;
+                padding: 10px;
+                border: 5px solid black;
+                width: 100%;
+                margin: 1%;
+                display: inline;
+                background: #380000 ;
+                color: white;
+                border-radius: 5px 5px 20px 20px;
+               
+            }
+            .date {font-size: 120%; text-align: right;color: red;}
+            .time {font-size: 110%; font-weight: bold;}
+            .host {font-size: 120%;display: inline; padding-left: 38%; padding-right: 1%;}
+            .guest {font-size: 120%; display: inline; padding-right: 5%; }
+            .host_goal {font-size: 120%;display: inline; padding-right: 1%;}
+            .guest_goal {font-size: 120%;display: inline; padding-right: 1%;}
+            .postedByAdmin {font-size: 100%; color: red;}
+            .league {font-size: 110%; font-weight: bold;}
+            
+    br
+    //-dohvaćamo u niz mySports sve različite sportove iz mečeva zbog sortiranja mečeva po sportovima
+    - var mySports= []
+    each match, i in matches
+        if !mySports.includes(match.sport_id)
+            -mySports.push(match.sport_id)
+
+    //-ovaj niz nam treba zbog ispisa na zaslon, u njega dohvaćamo JSON oblik svakog meča zasebno i onda možemo jednostavno dohvaćati atribute iz njegovih elemenata
+    - var allMatches= []
+    - for (var i = 0; i < matches.length; ++i) {
+        -allMatches.push(matches[i])
+    - }
+
+    - for (var i = 0; i < mySports.length; ++i) {
+        h1= mySports[i]
+        ul.list-group
+            - for (var j = 0; j < allMatches.length; ++j) {
+                if allMatches[j].sport_id==mySports[i]
+                    - const c1 = { postedByAdmin:allMatches[j].duration, date: allMatches[j].date_of_play, time: allMatches[j].playing_time, host:allMatches[j].host_id,  host_goal:allMatches[j].host_goals+" - ", guest:allMatches[j].guest_id, guest_goal:allMatches[j].guest_goals, league:allMatches[j].league_id}
+                    +comment(c1)
+            - }
+    - }
+
+            

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1 #{title}
+    br
+    h1 Dodani klubovi
+    br
+    ul.list-group
+        each club, i in clubs
+            li.list-group-item
+                a(href="/clubs/"+club._id)=club.name + " (" +club.sport_id+")"
+
+       
+            
+       
+        
+
+
+    
