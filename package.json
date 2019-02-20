@@ -1,7 +1,7 @@
 {
   "name": "nodekb",
   "version": "1.0.0",
-  "description": "Simple knowledgebase app",
+  "description": "Application for managing sports results",
   "main": "app.js",
   "scripts": {
     "start": "node app"
