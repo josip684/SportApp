@@ -1,6 +1,4 @@
 - "app.js" - server file
-- "node_modules" - not included here
-- Bootstrap - not included here
 - Database - MongoDB ("https://mlab.com/")
 - App is on Heroku server: https://sport-app-jg.herokuapp.com/
 - Used tools and technology: JavaScript, Node.js, Express, MongoDB, PUG, CSS, Bootstrap, jQuery
